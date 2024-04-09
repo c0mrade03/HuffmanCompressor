@@ -15,25 +15,25 @@ int main()
   std::cout << "Select Your Working Mode: ";
   char choice;
   std::cin >> choice;
-  const std::string rootPath = "/home/pk/HuffmanCompressor";
+  
   if (choice == '1')
   {
     clock_t start = clock();
-    frequency.readFile(rootPath + "/input.txt");
+    frequency.readFile("input.txt");
     huffman.huffer(frequency.getFrequencyMap());
-    huffman.compressToFile(rootPath + "/input.txt", rootPath + "/output.txt");
+    huffman.compressToFile("input.txt", "output.txt");
     std::cout << "Time taken: " << (1.0 * (clock() - start) / CLOCKS_PER_SEC) << "sec" << std::endl;
-    std::cout << "Input File Size : " << getFileSize(rootPath + "/input.txt") << " bytes." << std::endl;
-    std::cout << "Compressed File Size : " << getFileSize(rootPath + "/output.txt") << " bytes." << std::endl;
-    std::cout << "Compression Ratio : " << (1.0 * getFileSize(rootPath + "/output.txt") / getFileSize(rootPath + "/input.txt")) << std::endl;
+    std::cout << "Input File Size : " << getFileSize("input.txt") << " bytes." << std::endl;
+    std::cout << "Compressed File Size : " << getFileSize("output.txt") << " bytes." << std::endl;
+    std::cout << "Compression Ratio : " << (1.0 * getFileSize("output.txt") / getFileSize("input.txt")) << std::endl;
   }
   else if (choice == '2')
   {
     clock_t start = clock();
-    huffman.dehuffer(rootPath + "/output.txt", rootPath + "/finalOutput.txt");
+    huffman.dehuffer("output.txt", "finalOutput.txt");
     std::cout << "Time taken: " << (1.0 * (clock() - start) / CLOCKS_PER_SEC) << "sec" << std::endl;
-    std::cout << "Input file size (Compressed) : " << getFileSize(rootPath + "/output.txt") << " bytes." << std::endl;
-    std::cout << "Decompressed file size : " << getFileSize(rootPath + "/finalOutput.txt") << std::endl;
+    std::cout << "Input file size (Compressed) : " << getFileSize("output.txt") << " bytes." << std::endl;
+    std::cout << "Decompressed file size : " << getFileSize("finalOutput.txt") << std::endl;
   }
   else
   {
