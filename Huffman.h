@@ -5,7 +5,8 @@
 #include <unordered_map>
 #include <queue>
 #include <fstream>
-
+#include<sstream>
+#include<bitset>
 #include "Node.h"
 
 class Huffman
