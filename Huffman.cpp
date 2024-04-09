@@ -184,11 +184,11 @@ void Huffman::readHeader(std::ifstream &inputStream)
 
 void Huffman::decompressToFile(Node *rootNode, std::string codeString, std::string decompressedFile)
 {
-  std::ofstream ouputStream;
-  ouputStream.open(decompressedFile, std::ios::out);
+  std::ofstream outputStream;
+  outputStream.open(decompressedFile, std::ios::out);
   Node *traverse = rootNode;
 
-  for (int i = 0; i < codeString.size(); i++)
+  for (int i = 0; i < codeString.size() + 1; i++)
   {
     if (codeString[i] == '0')
     {
@@ -205,15 +205,12 @@ void Huffman::decompressToFile(Node *rootNode, std::string codeString, std::stri
       {
         break;
       }
-      else
-      {
-        ouputStream << traverse->getCharacter();
-        traverse = rootNode;
-      }
+      outputStream << traverse->getCharacter();
+      traverse = rootNode;
     }
   }
-  ouputStream.flush();
-  ouputStream.close();
+  outputStream.flush();
+  outputStream.close();
 }
 
 void Huffman::dehuffer(std::string compressedFile, std::string decompressedFile)
@@ -222,7 +219,7 @@ void Huffman::dehuffer(std::string compressedFile, std::string decompressedFile)
   std::string codeString;
   std::ifstream inputStream;
   inputStream.open(compressedFile, std::ios::in);
-
+  readHeader(inputStream);
   while (inputStream.get(character))
   {
     std::bitset<8> bits(character);
