@@ -27,7 +27,7 @@ bool MyComparator::operator()(Node *node1, Node *node2)
   return node1->getFrequency() > node2->getFrequency();
 }
 
-void Huffman::huffer(std::unordered_map<char, int> frequencyMap)
+void Huffman::huff(std::unordered_map<char, int> frequencyMap)
 {
 
   std::priority_queue<Node *, std::vector<Node *>, MyComparator> HuffmanQueue;
@@ -213,7 +213,7 @@ void Huffman::decompressToFile(Node *rootNode, std::string codeString, std::stri
   outputStream.close();
 }
 
-void Huffman::dehuffer(std::string compressedFile, std::string decompressedFile)
+void Huffman::dehuff(std::string compressedFile, std::string decompressedFile)
 {
   char character;
   std::string codeString;
